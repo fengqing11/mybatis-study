@@ -1,0 +1,15 @@
+package top.tamlong.test;
+
+import org.junit.Test;
+
+// 测试类
+public class MybatisAssociatdTest {
+	
+	/**
+	 * 嵌套查询
+	 */
+	@Test
+	public void findPersonByIdTest() {
+		//1.通过工具类生成Sqlsess对象
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;utils&apos; to &apos;mybais-dongtaisql&apos;" description="Rename resource &apos;utils&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/utils" name="mybais-dongtaisql" stamp="1555231912907" updateReferences="true"/>
+</session>

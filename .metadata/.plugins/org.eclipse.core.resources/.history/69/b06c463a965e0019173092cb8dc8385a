@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace表示命名空间 -->
+<mapper namespace="top.tamlong.mapper.CustomerMapper">
+	<!-- <if>元素使用 -->
+	<select id="findCustomerByNameAndJobs"
+		parameterType="top.tamlong.po.Customer"
+		resultType="top.tamlong.po.Customer">
+
+		select *from t_customer where 1=1
+		<if test="username!=null and username!=''">
+			and username like concat('%',#{username},'%')
+		</if>
+		<if test="jobs!=null and jobs!=''">
+			and jobs=#{jobs}
+		</if>
+	</select>
+</mapper>
+

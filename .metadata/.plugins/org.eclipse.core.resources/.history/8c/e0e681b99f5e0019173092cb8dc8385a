@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace表示命名空间 -->
+<mapper namespace="top.tamlong.mapper.CustomerMapper">
+	<!-- <if>元素使用 -->
+	<select id="findCustomerByNameAndJobs"
+		parameterType="top.tamlong.po.Customer"
+		resultType="top.tamlong.po.Customer">
+
+		select *from t_customer where 1=1
+		<if test="username!=null and username!=''">
+			and username like concat('%',#{username},'%')
+		</if>
+		<if test="jobs!=null and jobs!=''">
+			and jobs=#{jobs}
+		</if>
+	</select>
+
+	<!-- <chooose>元素使用 -->
+	<select id="findCustomerByNameOrJobs"
+		parameterType="top.tamlong.po.Customer"
+		resultType="top.tamlong.po.Customer">
+
+		select *from t_customer where 1=1
+		<choose>
+			<when test="username!=null and username!=''">
+				and username like concat('%',#{username},'%')
+			</when>
+			<when test="jobs!=null and jobs!=''">
+				and jobs=#{jobs}
+			</when>
+			<otherwise>
+				and phone is not null
+			</otherwise>
+		</choose>
+	</select>
+
+
+	<!-- 更新客户信息 -->
+	<!-- <set>元素 -->
+	<update id="updateCustomer"
+		parameterType="top.tamlong.po.Customer">
+		update t_customer
+		<set>
+			<if test="username!=null and username!=''">
+				username=#{username},
+			</if>
+			<if test="jobs!=null and jobs!=''">
+				jobs=#{jobs},
+			</if>
+			<if test="phone!=null and phone!=''">
+				phone=#{phone},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+	<!--遍历查询 -->
+	<!-- <foreach>元素 -->
+	<select id="findCustomerByIds"
+		parameterType="top.tamlong.po.Customer"
+		resultType="top.tamlong.po.Customer">
+		select * from t_customer where id in
+		<foreach item="id" index="index" collection="list" open="("
+			separator="," close=")">
+			id=#{id}	
+		</foreach>
+	</select>
+
+</mapper>
+

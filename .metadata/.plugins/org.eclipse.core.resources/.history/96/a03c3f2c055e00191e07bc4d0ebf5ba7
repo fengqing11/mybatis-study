@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace表示命名空间 -->
+<mapper namespace="top.tamlong.mapper.CustomerMapper">
+	<!-- 根据编号获取客户信息 -->
+	<select id="findCustomerById" parameterType="Integer" resultType="top.tamlong.po.Customer">
+		select * from t_customer where id = #{id}
+	</select>
+	<!-- 添加客户信息 -->
+	<insert id="addCustomer" parameterType="top.tamlong.po.Customer">
+		insert into t_customer(jobs,phone,username)
+		value(#{jobs},#{phone})
+	</insert>
+</mapper>
+

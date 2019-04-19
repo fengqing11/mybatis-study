@@ -1,0 +1,13 @@
+package top.tamlong.test;
+
+import org.junit.Test;
+
+// 测试类
+public class MybatisTest {
+	 // 根据客户编号查询客户信息
+	@Test
+	public void findCustomerByIdTest() {
+		// 1.读取配置文件
+		String resource = "mybatis-config.xml";
+	}
+}

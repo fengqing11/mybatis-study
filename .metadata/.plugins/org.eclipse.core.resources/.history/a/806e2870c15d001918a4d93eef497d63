@@ -1,0 +1,12 @@
+package top.tamlong.po;
+/**
+ * 
+ * 客户持久化类
+ * @author Administrator
+ *
+ */
+public class Customer {
+	private Integer id;
+	private String username;
+	
+}

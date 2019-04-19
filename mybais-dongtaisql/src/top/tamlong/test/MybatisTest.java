@@ -1,0 +1,114 @@
+package top.tamlong.test;
+
+import java.io.InputStream;
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.ExecutorType;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.session.TransactionIsolationLevel;
+import org.junit.Test;
+
+import top.tamlong.po.Customer;
+import top.tamlong.utils.MybatisUtils;
+
+// 测试类
+public class MybatisTest {
+
+	/**
+	 * 根据客户信息和职业组合查询客户信息列表
+	 */
+	@Test
+	public void findCustomerByNameAndJobsTest() {
+		// 通过工具类生成
+		SqlSession session = MybatisUtils.getSession();
+		// 创建Custome对象，封装需要组合查询的条件
+		Customer customer = new Customer();
+		customer.setUsername("jack");
+		customer.setJobs("teacher");
+		// 执行SqlSession的查询方法，返回结果集
+		List<Customer> customers = session
+				.selectList("top.tamlong.mapper" + ".CustomerMapper.findCustomerByNameAndJobs", customer);
+		// 输出查询结果
+		for (Customer customer2 : customers) {
+			// 打印输出结果
+			System.out.println(customer2);
+		}
+		// 关闭SqlSession
+		session.close();
+	}
+
+	/**
+	 * 根据用户姓名或职业查询客户信息
+	 */
+	@Test
+	public void findCustomerByNameOrJobsTest() {
+		SqlSession session = MybatisUtils.getSession();
+		Customer customer = new Customer();
+		customer.setUsername("jack");
+		customer.setJobs("teacher");
+		List<Customer> customers = session.selectList("top.tamlong.mapper" + ".CustomerMapper.findCustomerByNameOrJobs",
+				customer);
+		for (Customer customer2 : customers) {
+			System.out.println(customer2);
+		}
+		session.close();
+	}
+
+	/**
+	 * 更新客户信息
+	 */
+	@Test
+	public void updateCustomerTest() {
+		SqlSession session = MybatisUtils.getSession();
+		Customer customer = new Customer();
+		customer.setId(3);
+		customer.setPhone("45345879658");
+		int row = session.update("top.tamlong.mapper" + ".CustomerMapper.updateCustomer", customer);
+		if (row > 0) {
+			System.out.println("您成功修改了" + row + "条数据！");
+		} else {
+			System.out.println("执行修改操作失败！");
+		}
+		session.commit();
+		session.close();
+	}
+
+	/**
+	 * 根据客户编号批量查询客户信息
+	 */
+	@Test
+	public void findCustomerByIdsTest() {
+		SqlSession session = MybatisUtils.getSession();
+		// 创建list集合，封装查询id
+		List<Integer> ids = new ArrayList<Integer>();
+		ids.add(3);
+		ids.add(4);
+		List<Customer> customers = session.selectList("top.tamlong.mapper" + ".CustomerMapper.findCustomerByIds", ids);
+		for (Customer customer2 : customers) {
+			System.out.println(customer2);
+		}
+		session.close();
+	}
+
+	/**
+	 * <bind>元素的使用：根据客户名模糊查询客户信息
+	 */
+	@Test
+	public void findCustomerByName() {
+		SqlSession session = MybatisUtils.getSession();
+		Customer customer = new Customer();
+		customer.setUsername("j");
+		List<Customer> customers = session.selectList("top.tamlong.mapper" + ".CustomerMapper.findCustomerByName",
+				customer);
+		for (Customer customer2 : customers) {
+			System.out.println(customer2);
+		}
+		session.close();
+	}
+}

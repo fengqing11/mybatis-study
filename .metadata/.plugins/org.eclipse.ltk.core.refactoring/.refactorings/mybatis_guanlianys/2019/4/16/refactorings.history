@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;mybatis_guanlianys/src/mabatis-config.xml&apos; to &apos;mybatis-config.xml&apos;" description="Rename resource &apos;mabatis-config.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/mabatis-config.xml" name="mybatis-config.xml" stamp="1555647600344" updateReferences="true"/>
+</session>

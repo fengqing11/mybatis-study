@@ -1,0 +1,5 @@
+package top.tamlong.utils;
+
+public class MybatisUtils {
+
+}
