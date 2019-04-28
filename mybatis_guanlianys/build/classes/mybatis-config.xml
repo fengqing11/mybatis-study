@@ -29,5 +29,9 @@
 	<mappers>
 		<mapper resource="top/tamlong/mapper/IdCardMapper.xml"/>
 		<mapper resource="top/tamlong/mapper/PersonMapper.xml"/>
+		<mapper resource="top/tamlong/mapper/UserMapper.xml"/>
+		<mapper resource="top/tamlong/mapper/OrdersMapper.xml"/>
+		<mapper resource="top/tamlong/mapper/ProduceMapper.xml"/>
+		
 	</mappers>
 </configuration>

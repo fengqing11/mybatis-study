@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.tamlong.mapper.OrdersMapper">
+	<!-- 多对多嵌套查询：通过执行另一条sql映射语句来返回预期的特殊类型 -->
+	<select id="findOrdersWithProduce" parameterType="Integer"
+		resultMap="OrdersWithProduceResult">
+		select * from tb_orders where id=#{id}
+	</select>
+	<resultMap type="Orders" id="OrdersWithProduceResult">
+		<id property="id" column="id" />
+		<result property="number" column="number" />
+		<collection property="produceList" column="id"
+			ofType="Produce"
+			select="top.tamlong.mapper.ProduceMapper.findProduceById" >
+		</collection>
+	</resultMap>
+
+
+</mapper>
